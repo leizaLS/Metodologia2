@@ -14,7 +14,7 @@ disponible
 ^disponible.!
 
 horario
-	"Devuelve el horario de la funcion"
+	"Devuelve el horario de la funcion, getter"
 
 	^horario!
 
@@ -25,21 +25,41 @@ iniFuncion: unaSalaid peliculaid: unPeliculaId horario: unHorario precio: unPrec
 	precio := unPrecio.
 	disponible := 30!
 
+modiHorario: unHorario
+"Setter de horario"
+	horario := unHorario .!
+
+modiPeliculaId: unaPeli
+"Setter de pelicula Id"
+	peliculaid := unaPeli .!
+
+modiPrecio: unPrecio
+"Setter de precio"
+	precio := unPrecio .!
+
+modiSalaId: unaSala
+"setter de sala id"
+	salaid := unaSala!
+
 peliculaid
-	"Devuelve el id de la pelicula que se reproduce en la funcion"
+	"Devuelve el id de la pelicula que se reproduce en la funcion, getter"
 	^peliculaid!
 
 precio
-	"Devuelve el precio de la funcion"
+	"Devuelve el precio de la funcion, getter"
 
 	^precio!
 
 salaid
-	"Devuelve la sala donde se reproduce la pelicula"
+	"Devuelve la sala donde se reproduce la pelicula, getter"
 	^salaid! !
 !TP_Funcion categoriesFor: #disponible!public! !
 !TP_Funcion categoriesFor: #horario!public! !
 !TP_Funcion categoriesFor: #iniFuncion:peliculaid:horario:precio:!public! !
+!TP_Funcion categoriesFor: #modiHorario:!public! !
+!TP_Funcion categoriesFor: #modiPeliculaId:!public! !
+!TP_Funcion categoriesFor: #modiPrecio:!public! !
+!TP_Funcion categoriesFor: #modiSalaId:!public! !
 !TP_Funcion categoriesFor: #peliculaid!public! !
 !TP_Funcion categoriesFor: #precio!public! !
 !TP_Funcion categoriesFor: #salaid!public! !

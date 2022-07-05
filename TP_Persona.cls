@@ -15,11 +15,6 @@ apellido
 
 	^apellido!
 
-apellido: aStringName
-	"Initialize the lastName of the receiver to aStringName"
-
-	apellido := aStringName!
-
 dni
 "return dni"
 ^dni!
@@ -30,6 +25,11 @@ email
 
 getId
 ^id.!
+
+modiApellido: aStringName
+	"Initialize the lastName of the receiver to aStringName"
+
+	apellido := aStringName!
 
 modiDni: aStringDni
 	"Initialize the Email of the receiver to aStringName"
@@ -54,10 +54,10 @@ nombre
 setId: unId
 id := unId.! !
 !TP_Persona categoriesFor: #apellido!public! !
-!TP_Persona categoriesFor: #apellido:!public! !
 !TP_Persona categoriesFor: #dni!public! !
 !TP_Persona categoriesFor: #email!public! !
 !TP_Persona categoriesFor: #getId!public! !
+!TP_Persona categoriesFor: #modiApellido:!public! !
 !TP_Persona categoriesFor: #modiDni:!public! !
 !TP_Persona categoriesFor: #modiEmail:!public! !
 !TP_Persona categoriesFor: #modiId:!public! !

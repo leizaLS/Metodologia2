@@ -23,19 +23,18 @@ agregarReserva:unaEntrada
 entradas add: unaEntrada.!
 
 entradas
-
+"getter de entradas"
 ^entradas.!
 
 imprimirCliente
 	Transcript
 		show: '---------------------------------------- ';cr;
 		show: ' [Datos del cliente]'; cr;
-		show: ' * Id_cliente: ', id printString; cr;
-		show: ' * Nombre: ', nombre; cr;
-		show: ' * Apellido: ', apellido; cr;
-		show: ' * Email: ', email; cr;
-		show: ' * DNI: ' , dni; cr	
-		"si no pones en id printString da error, porque no es un string"!
+		show: ' * Id_cliente: ', self getId printString; cr;
+		show: ' * Nombre: ', self nombre ; cr;
+		show: ' * Apellido: ', self apellido ; cr;
+		show: ' * Email: ', self email ; cr;
+		show: ' * DNI: ' , self dni ; cr.!
 
 iniCliente: aName lastName: aLastName email: aEmail dni: aDni
 	"Returns a initialized instance of Persona"

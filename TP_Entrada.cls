@@ -10,21 +10,31 @@ TP_Entrada comment: ''!
 !TP_Entrada categoriesForClass!Kernel-Objects! !
 !TP_Entrada methodsFor!
 
+idCliente
+^idCliente.!
+
 idPelicula
 "Devuelve idPelicula"
 ^idPelicula.!
 
-idPelicula: newId
-	"Asigna un valor a idPelicula"
-
-	idPelicula := newId!
-
 initEntrada: idPeli idCliente: idClient
 idPelicula := idPeli.
-idCliente := idClient.! !
+idCliente := idClient.!
+
+modiIdCliente: newId
+	"Setter de idCliente"
+
+	idCliente := newId!
+
+modiIdPelicula: newId
+	"Setter de idPelicula"
+
+	idPelicula := newId! !
+!TP_Entrada categoriesFor: #idCliente!public! !
 !TP_Entrada categoriesFor: #idPelicula!public! !
-!TP_Entrada categoriesFor: #idPelicula:!public! !
 !TP_Entrada categoriesFor: #initEntrada:idCliente:!public! !
+!TP_Entrada categoriesFor: #modiIdCliente:!public! !
+!TP_Entrada categoriesFor: #modiIdPelicula:!public! !
 
 !TP_Entrada class methodsFor!
 

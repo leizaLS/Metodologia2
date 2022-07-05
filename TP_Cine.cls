@@ -24,25 +24,29 @@ listaEmpleados add: unEmpleado.
 Transcript show: '**Empleado creado con Exito!!'.!
 
 agregarFuncion:unaFuncion
-
+"Agrega una funcion a la lista de funciones del cine"
 cartelera add: unaFuncion.!
 
 agregarPelicula: unaPelicula
-unaPelicula darId: (self getContadorPeliculas).
+"agrega una Pelicula a la lista interna de Peliculas"
+unaPelicula darId: self getContadorPeliculas.
 listaPeliculas add: unaPelicula.!
 
 buscarClientePorDni
 | cliente dniBuscar |
+Transcript clear. 
 dniBuscar := Prompter prompt: 'Ingrese el dni a buscar (solo numero)'.
 cliente := listaClientes detect: [:i | i dni = dniBuscar]
+"En caso de que no encontremos al cliente"
 ifNone:[ Transcript show: '[!!] No se encontro el DNI'. ^nil ].
+"En caso de que si lo encontramos imprimimos datos"
 (cliente ~= nil) ifTrue: [ cliente imprimirCliente ].
 
 
 !
 
 cargaGral
-	| p1 p2 p3 p4 p5 p6 f1 f2 f3 f4 f5 emp1 cli1 |
+	| p1 p2 p3 p4 p5 p6 f1 f2 f3 f4 f5 emp1 cli1 cli2|
 	p1 := TP_Pelicula
 				crearPelicula: 'Avengers: Infinity War'
 				director: 'Anthony Russo'
@@ -122,6 +126,12 @@ cargaGral
 				Apellido: 'Ojeda'
 				email: 'agustinojeda20@gmail.com'
 				dni: '42363376'.
+
+	cli2 := Cliente
+				crearCliente: 'Leandro'
+				Apellido: 'Solano'
+				email: 'leandro.solano20@gmail.com'
+				dni: '123456789'.
 	self agregarPelicula: p1.
 	self agregarPelicula: p2.
 	self agregarPelicula: p3.
@@ -134,30 +144,8 @@ cargaGral
 	self agregarFuncion: f4.
 	self agregarFuncion: f5.
 	self agregarEmpleado: emp1.
-	self agregarCliente: cli1!
-
-cargaGral_Peliculas
-|p1 p2 p3 p4 p5 p6|
-
-p1:= TP_Pelicula crearPelicula: 'Avengers: Infinity War' director: 'Anthony Russo' anio: 2018 genero: 'Acción | Aventura | Ciencia Ficción | Fantasia | Superheroes' duracion: 149 descripcion: 'Los superhéroes se alían para vencer al poderoso Thanos, el peor enemigo al que se han enfrentado. Si Thanos logra reunir las seis gemas del infinito: poder, tiempo, alma, realidad, mente y espacio, nadie podrá detenerlo.'.
-
-p2:= TP_Pelicula crearPelicula: 'Iron Man' director: 'Jon Favreau' anio: 2008 genero: 'Accion' duracion: 126 descripcion: 'La trama gira en torno a Tony Stark, un empresario e ingeniero, que construye un exoesqueleto motorizado y se convierte en Iron Man, un superhéroe tecnológicamente avanzado.'.
-
-p3:= TP_Pelicula crearPelicula: 'Doctor Strange en el multiverso de la locura' director: 'Sam Raimi' anio: 2022 genero: 'Accion' duracion: 126 descripcion: 'DR. STRANGE EN EL MULTIVERSO DE LA LOCURA. "El Multiverso es un concepto del que conocemos terriblemente poco"'.
-
-p4:= TP_Pelicula crearPelicula: 'Jurassic World Dominio' director: 'Colin Trevorrow' anio: 2022 genero: 'Aventuras' duracion: 147 descripcion: 'Esta pelicula tiene lugar cuatro años después de la destrucción de Isla Nublar. Los dinosaurios ahora viven y cazan junto a los humanos en todo el mundo. Este frágil equilibrio cambiará el futuro y determinará, de una vez por todas, si los seres humanos deben seguir siendo los depredadores máximos en un planeta que ahora comparten con las criaturas más temibles de la historia.'.
-
-p5:= TP_Pelicula crearPelicula: 'Asesino sin memoria' director: 'Martin Campbell' anio: 2022 genero: 'Accion' duracion: 114 descripcion: 'Alex Lewis (Liam Neeson) es un experto asesino con una reputación de discreta precisión. Cuando Alex se niega a completar un trabajo para una peligrosa organización criminal, se convierte en un objetivo y debe ir a la caza de quienes lo quieren muerto. Alex está luchando con una severa pérdida de memoria, que afecta a todos sus movimientos y hace que su objetivo sea cada vez más difícil de completar. A medida que los enemigos se acercan, Alex se ve obligado a cuestionar cada una de sus acciones y en quién puede confiar.'.
-
-p6:= TP_Pelicula crearPelicula: 'Top Gun Maverick' director: 'Joseph Kosinski' anio: 2022 genero: 'Accion' duracion: 131 descripcion: 'Después de más de treinta años de servicio como uno de los mejores aviadores de la Armada, Pete "Maverick" Mitchell (Tom Cruise) está donde pertenece, como un valiente piloto de prueba y esquivando el avance en el rango que lo pondría en tierra. Enfrentando un futuro incierto y confrontando a los fantasmas de su pasado, Maverick se ve envuelto en una confrontación con sus propios miedos más profundos, culminando en una misión que exige el máximo sacrificio de aquellos que serán elegidos para volar.'.
-
-(self) agregarPelicula: p1.
-(self) agregarPelicula: p2.
-(self) agregarPelicula: p3.
-(self) agregarPelicula: p4.
-(self) agregarPelicula: p5.
-(self) agregarPelicula: p6.
-!
+	self agregarCliente: cli1.
+	self agregarCliente: cli2.!
 
 cargaManual_Cliente
 | newClient nom ape email dni|
@@ -171,8 +159,7 @@ email := Prompter prompt: 'Ingrese su email:'.
 dni := Prompter prompt: 'Dni:'.
 newClient := Cliente crearCliente: nom Apellido: ape email: email dni: dni.
 (self) agregarCliente: newClient.	
-^newClient.
-"Revision de existencia de usuario"!
+^newClient.!
 
 cargaManual_Pelicula
 |opcion peliculaNombre director anio genero duracion  descripcion newPelicula|
@@ -180,6 +167,7 @@ Transcript clear.
 Transcript show: '**Sistema de carga manual de pelicula/s';cr;
 show:'Por favor complete los campos'.
 
+"Permite cargar una pelicula/s con un bucle"
 opcion := 'si'.
 [(opcion asLowercase) sameAs: 'si' ] whileTrue:[
 	peliculaNombre:= Prompter prompt: 'Nombre de la pelicula:'.
@@ -195,7 +183,7 @@ opcion := 'si'.
 !
 
 cartelera
-
+"Retorna la cartelera del cine"
 ^cartelera.!
 
 getClienteByDni:unDni
@@ -215,8 +203,6 @@ getContadorRegistro
 contadorRegistro := contadorRegistro +1.
 ^contadorRegistro.!
 
-getFuncionByPelicula:unNomPeli!
-
 initCine: unCine Direccion: unDir
 	nombre := unCine.
 	direccion := unDir.
@@ -226,7 +212,7 @@ initCine: unCine Direccion: unDir
 	listaPeliculas := OrderedCollection new.
 	listaClientes := OrderedCollection new.
 	listaEmpleados := OrderedCollection new.
-	cartelera := OrderedCollection new!
+	cartelera := OrderedCollection new.!
 
 listarClientes
 | colec |
@@ -234,6 +220,7 @@ Transcript clear; show: '*Lista de Clientes Registrados:';cr; show: ''.
 colec := self verClientes.
 
 (colec isEmpty) ifFalse: [ colec do: [:each | each imprimirCliente. ] ]
+"En caso de que no haya clientes registrados mandamos el mensaje"
 ifTrue: [ Transcript show: '';cr; show:'[!!] No hay clientes registrados' ].
 
 !
@@ -243,8 +230,8 @@ listarNombresPeliculas
 Transcript clear; show: '*Lista de Peliculas:'; cr.
 colec := self verPeliculas.
 x := 1.
-colec do: [:each | Transcript
-				show: x printString , ') ';
+
+colec do: [:each | Transcript show: x printString , ') ';
 				show: ' IdPelicula: '; show: each id printString; 
 				show: ' - Titulo: '; show: each titulo; cr.
 				x := x + 1]!
@@ -256,22 +243,14 @@ show:'*Lista de Peliculas:'; cr.
 colec:= (self) verPeliculas.
 colec.
 x := 1.
-colec do: [:each  | Transcript
-				show: x printString,') ';cr;
-				show:'    *IdPelicula: ';  
-				show: each id printString;cr;
-				show:'    *Titulo: ';
-				show: each titulo;cr;
-				show:'    *Director: ';
-				show: each director;cr;
-				show:'    *Duracion: ';
-				show: each duracion printString;cr;
-				show:'    *Genero: ';
-				show: each genero printString;cr;
-				show:'    *Año: ';
-				show: each anio printString;cr;
-				show:'    *Descripcion: ';
-				show: each descripcion;cr.
+colec do: [:each  | Transcript show: x printString,') ';cr;
+				show:'    *IdPelicula: ';  show: each id printString;cr;
+				show:'    *Titulo: '; show: each titulo;cr;
+				show:'    *Director: '; show: each director;cr; 
+				show:'    *Duracion: '; show: each duracion printString;cr; 
+				show:'    *Genero: '; show: each genero printString;cr; 
+				show:'    *Año: '; show: each anio printString;cr; 
+				show:'    *Descripcion: '; show: each descripcion;cr.
 				x := x+1.
 	Transcript show:'----------------------------------------------------------------------------';cr.
 ].
@@ -281,7 +260,7 @@ listarPeliculasCollect
 | collec x |
 Transcript clear; show: '*Lista de Peliculas con collect:'; cr.
 x := 1.
-collec := (self verPeliculas) collect: [:each | "Transcript show: x printString , ') '." each titulo. "x := x + 1."].
+collec := (self verPeliculas) collect: [:each | each titulo ].
 
 "inspect de peliculas-nombre"
 collec inspect.
@@ -312,12 +291,16 @@ menuCine
 		show: '  Opcion8: Filtrar peliculas por año no querido (*reject, filtro no igual)';
 		cr;
 		show: '  Opcion9: Vender Entrada';
-		cr!
+		cr;
+		show: '  Opcion10: Ver peliculas ordenadas por año de estreno';
+		cr. !
 
 modiDireccion: unaDireccion
+"Setter de direccion del cine"
 direccion := unaDireccion.!
 
 modiNombre: unNombre
+"Setter de nombre del cine"
 nombre := unNombre.!
 
 rejectPeliculasAnio
@@ -357,9 +340,17 @@ verClientes
 "Devuelve la lista de clientes"
 ^listaClientes.!
 
+verDireccion
+"retorna la direccion del cine"
+^direccion.!
+
 verEmpleados
 "Devuelve la lista de empleados"
 ^listaEmpleados.!
+
+verNombre
+"retorna el nombre del cine"
+^nombre.!
 
 verPeliculas
 "Devuelve la lista de peliculas"
@@ -370,7 +361,6 @@ verPeliculas
 !TP_Cine categoriesFor: #agregarPelicula:!public! !
 !TP_Cine categoriesFor: #buscarClientePorDni!public! !
 !TP_Cine categoriesFor: #cargaGral!public! !
-!TP_Cine categoriesFor: #cargaGral_Peliculas!public! !
 !TP_Cine categoriesFor: #cargaManual_Cliente!public! !
 !TP_Cine categoriesFor: #cargaManual_Pelicula!public! !
 !TP_Cine categoriesFor: #cartelera!public! !
@@ -378,7 +368,6 @@ verPeliculas
 !TP_Cine categoriesFor: #getContadorEmpleados!public! !
 !TP_Cine categoriesFor: #getContadorPeliculas!public! !
 !TP_Cine categoriesFor: #getContadorRegistro!public! !
-!TP_Cine categoriesFor: #getFuncionByPelicula:!public! !
 !TP_Cine categoriesFor: #initCine:Direccion:!public! !
 !TP_Cine categoriesFor: #listarClientes!public! !
 !TP_Cine categoriesFor: #listarNombresPeliculas!public! !
@@ -391,7 +380,9 @@ verPeliculas
 !TP_Cine categoriesFor: #selectPeliculasAnio!public! !
 !TP_Cine categoriesFor: #verCartelera!public! !
 !TP_Cine categoriesFor: #verClientes!public! !
+!TP_Cine categoriesFor: #verDireccion!public! !
 !TP_Cine categoriesFor: #verEmpleados!public! !
+!TP_Cine categoriesFor: #verNombre!public! !
 !TP_Cine categoriesFor: #verPeliculas!public! !
 
 !TP_Cine class methodsFor!

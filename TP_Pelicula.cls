@@ -11,25 +11,29 @@ TP_Pelicula comment: ''!
 !TP_Pelicula methodsFor!
 
 anio
-
+"getter de año"
 ^anio.!
 
 darId: unId
 id := unId.!
 
 descripcion
+"getter de descripcion"
 ^descripcion.!
 
 director
 ^director.!
 
 duracion
+"getter de duracion"
 ^duracion.!
 
 genero
+"getter de genero"
 ^genero.!
 
 id
+"getter de id de pelicula"
 ^id!
 
 iniPelicula: nomPeli director: directorPeli anio: anioPeli genero: generoPeli duracion: duracionPeli descripcion: descPeli
@@ -44,22 +48,28 @@ iniPelicula: nomPeli director: directorPeli anio: anioPeli genero: generoPeli du
 	descripcion := descPeli!
 
 ModiAnio: unAnio
+"setter de año de pelicula"
 anio =unAnio .!
 
 ModiDescrip: unaDescrip
+"setter de descripcion"
 descripcion = unaDescrip .!
 
 ModiDirector: unDir
+"setter de director"
 director =unDir.!
 
 ModiDuracion: unaDuracion
+"setter de duracion"
 duracion =unaDuracion .!
 
 ModiGenero: unGenero
+"setter de genero"
 genero =unGenero .!
 
 ModiNombre: unNom
-	titulo = unNom!
+"setter de nombre"
+	titulo = unNom.!
 
 titulo
 	^titulo! !
